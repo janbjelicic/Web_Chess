@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Mvc.Bootstrap.Core</id>
+    <version>1.2.1.1</version>
+    <title>Twitter Bootstrap and ASP.NET MVC</title>
+    <authors>Simon Baynes</authors>
+    <owners>Simon Baynes</owners>
+    <projectUrl>https://github.com/baynezy/MVC.Bootstrap</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains extension methods for the System.Web.Mvc.HtmlHelper class. Allowing you to use Asp.Net MVC with the Twitter Bootstrap UI Framework.</description>
+    <releaseNotes />
+    <copyright>Copyright 2013</copyright>
+    <language />
+    <tags>aspnet aspnetmvc</tags>
+    <references>
+      <reference file="Mvc.Bootstrap.Core.dll" />
+    </references>
+  </metadata>
+</package>

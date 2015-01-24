@@ -1,0 +1,198 @@
+﻿@model Sah.Models.PartijaUnos
+
+@{
+    ViewBag.Title = "Pregled";
+    var a = 1;
+    var partija=Model;
+    var brojacPotez = 0;
+    var figure = String.Empty;
+    var potezi = Model.poteziSpojeni;
+}
+
+<div id="LijeviPregled">
+
+<fieldset>
+    <legend>Pregled partije</legend>
+
+    <table>
+        <tr>
+            <th class="zapisnik">
+
+            </th>
+            <th class="zapisnik">
+                @Html.Raw(Model.imeBijeli) @Html.Raw(Model.prezimeBijeli)
+            </th>
+            <th class="zapisnik">
+                @Html.Raw(Model.imeCrni) @Html.Raw(Model.prezimeCrni)
+            </th>
+        </tr>
+        @for (int i = 0; i < Model.potezi.Count(); i+=2 )
+        {
+            <tr>
+                <td class="zapisnik">
+                    @a.
+                    @{a++;}
+                </td>
+                <td class="zapisnik">
+                    @Html.Raw(Model.potezi[i].potezZapisanNotacijski)
+                </td>
+                <td class="zapisnik">
+                    @if ((i + 1) != Model.potezi.Count())
+                    {
+                        @Html.Raw(Model.potezi[i+1].potezZapisanNotacijski)
+                    }
+                </td>
+           </tr>
+        }
+    </table>
+    
+</fieldset>
+<br />
+<br />
+    <p>
+        <input type="button" id="btnProsli" class="btn btn-primary" value="Prosli" />
+        <input type="button" id="btnSljedeci" class="btn btn-primary" value="Sljedeci" />
+    </p>
+<p>
+    @Html.ActionLink("Natrag na listu pozicija", "Index")
+</p>
+
+</div>
+
+<div id="DesniPregled">
+    
+    <input type="hidden" id="idBrojacPotez" value="@brojacPotez" />
+    <input type="hidden" id="idPotezi" value="@potezi" />
+    <input type="hidden" id="idFigure" value="@figure" />
+
+        <script type="text/javascript"                                     
+        src="@Url.Content("~/scripts/jquery-1.7.1.js")"></script>        
+
+        <script type="text/javascript"                                       
+        src="@Url.Content("~/scripts/Ploca.js")"></script> 
+
+<table id="ploca">
+        <tr>
+            <td class="kut"></td>
+            <td class="znakPoljeHorizontalno">a</td>
+            <td class="znakPoljeHorizontalno">b</td>
+            <td class="znakPoljeHorizontalno">c</td>
+            <td class="znakPoljeHorizontalno">d</td>
+            <td class="znakPoljeHorizontalno">e</td>
+            <td class="znakPoljeHorizontalno">f</td>
+            <td class="znakPoljeHorizontalno">g</td>
+            <td class="znakPoljeHorizontalno">h</td>
+            <td class="kut"></td>
+        </tr>
+        <tr>
+            <td class="znakPoljeVertikalno">8</td>
+            <td id="a8" class="bijeloPolje" data-x="a" data-y="8"><img class="slikaFigura" src="../../Images/Figure/bRook.png" / alt="Top"></td>
+            <td id="b8" class="crnoPolje" data-x="b" data-y="8"><img class="slikaFigura" src="../../Images/Figure/bKnight.png" / alt="Skakac"></td>
+            <td id="c8" class="bijeloPolje" data-x="c" data-y="8"><img class="slikaFigura" src="../../Images/Figure/bBishop.png" / alt="Lovac"></td>
+            <td id="d8" class="crnoPolje" data-x="d" data-y="8"><img class="slikaFigura" src="../../Images/Figure/bQueen.png" / alt="Dama"></td>
+            <td id="e8" class="bijeloPolje" data-x="e" data-y="8"><img class="slikaFigura" src="../../Images/Figure/bKing.png" / alt="Kralj"></td>
+            <td id="f8" class="crnoPolje" data-x="f" data-y="8"><img class="slikaFigura" src="../../Images/Figure/bBishop.png" / alt="Lovac"></td>
+            <td id="g8" class="bijeloPolje" data-x="g" data-y="8"><img class="slikaFigura" src="../../Images/Figure/bKnight.png" / alt="Skakac"></td>
+            <td id="h8" class="crnoPolje" data-x="h" data-y="8"><img class="slikaFigura" src="../../Images/Figure/bRook.png" / alt="Top"></td>
+            <td class="znakPoljeVertikalno" data-x="a" data-y="8">8</td>
+        </tr>
+        <tr>
+            <td class="znakPoljeVertikalno">7</td>
+            <td id="a7" class="crnoPolje" data-x="a" data-y="7"><img class="slikaFigura" src="../../Images/Figure/bPawn.png" / alt="Pijun"></td>
+            <td id="b7" class="bijeloPolje" data-x="b" data-y="7"><img class="slikaFigura" src="../../Images/Figure/bPawn.png" / alt="Pijun"></td>
+            <td id="c7" class="crnoPolje" data-x="c" data-y="7"><img class="slikaFigura" src="../../Images/Figure/bPawn.png" / alt="Pijun"></td>
+            <td id="d7" class="bijeloPolje" data-x="d" data-y="7"><img class="slikaFigura" src="../../Images/Figure/bPawn.png" / alt="Pijun"></td>
+            <td id="e7" class="crnoPolje" data-x="e" data-y="7"><img class="slikaFigura" src="../../Images/Figure/bPawn.png" / alt="Pijun"></td>
+            <td id="f7" class="bijeloPolje" data-x="f" data-y="7"><img class="slikaFigura" src="../../Images/Figure/bPawn.png" / alt="Pijun"></td>
+            <td id="g7" class="crnoPolje" data-x="g" data-y="7"><img class="slikaFigura" src="../../Images/Figure/bPawn.png" / alt="Pijun"></td>
+            <td id="h7" class="bijeloPolje" data-x="h" data-y="7"><img class="slikaFigura" src="../../Images/Figure/bPawn.png" / alt="Pijun"></td>
+            <td class="znakPoljeVertikalno">7</td>
+        </tr>
+        <tr>
+            <td class="znakPoljeVertikalno">6</td>
+            <td id="a6" class="bijeloPolje" data-x="a" data-y="6"></td>
+            <td id="b6" class="crnoPolje" data-x="b" data-y="6"></td>
+            <td id="c6" class="bijeloPolje" data-x="c" data-y="6"></td>
+            <td id="d6" class="crnoPolje" data-x="d" data-y="6"></td>
+            <td id="e6" class="bijeloPolje" data-x="e" data-y="6"></td>
+            <td id="f6" class="crnoPolje" data-x="f" data-y="6"></td>
+            <td id="g6" class="bijeloPolje" data-x="g" data-y="6"></td>
+            <td id="h6" class="crnoPolje" data-x="h" data-y="6"></td>
+            <td class="znakPoljeVertikalno">6</td>
+        </tr>
+        <tr>
+            <td class="znakPoljeVertikalno">5</td>
+            <td id="a5" class="crnoPolje" data-x="a" data-y="5"></td>
+            <td id="b5" class="bijeloPolje" data-x="b" data-y="5"></td>
+            <td id="c5" class="crnoPolje" data-x="c" data-y="5"></td>
+            <td id="d5" class="bijeloPolje" data-x="d" data-y="5"></td>
+            <td id="e5" class="crnoPolje" data-x="e" data-y="5"></td>
+            <td id="f5" class="bijeloPolje" data-x="f" data-y="5"></td>
+            <td id="g5" class="crnoPolje" data-x="g" data-y="5"></td>
+            <td id="h5" class="bijeloPolje" data-x="h" data-y="5"></td>
+            <td class="znakPoljeVertikalno">5</td>
+        </tr>
+        <tr>
+            <td class="znakPoljeVertikalno">4</td>
+            <td id="a4" class="bijeloPolje" data-x="a" data-y="4"></td>
+            <td id="b4" class="crnoPolje" data-x="b" data-y="4"></td>
+            <td id="c4" class="bijeloPolje" data-x="c" data-y="4"></td>
+            <td id="d4" class="crnoPolje" data-x="d" data-y="4"></td>
+            <td id="e4" class="bijeloPolje" data-x="e" data-y="4"></td>
+            <td id="f4" class="crnoPolje" data-x="f" data-y="4"></td>
+            <td id="g4" class="bijeloPolje" data-x="g" data-y="4"></td>
+            <td id="h4" class="crnoPolje" data-x="h" data-y="4"></td>
+            <td class="znakPoljeVertikalno">4</td>
+        </tr>
+        <tr>
+            <td class="znakPoljeVertikalno">3</td>
+            <td id="a3" class="crnoPolje" data-x="a" data-y="3"></td>
+            <td id="b3" class="bijeloPolje" data-x="b" data-y="3"></td>
+            <td id="c3" class="crnoPolje" data-x="c" data-y="3"></td>
+            <td id="d3" class="bijeloPolje" data-x="d" data-y="3"></td>
+            <td id="e3" class="crnoPolje" data-x="e" data-y="3"></td>
+            <td id="f3" class="bijeloPolje" data-x="f" data-y="3"></td>
+            <td id="g3" class="crnoPolje" data-x="g" data-y="3"></td>
+            <td id="h3" class="bijeloPolje" data-x="h" data-y="3"></td>
+            <td class="znakPoljeVertikalno">3</td>
+        </tr>
+        <tr>
+            <td class="znakPoljeVertikalno">2</td>
+            <td id="a2" class="bijeloPolje" data-x="a" data-y="2"><img class="slikaFigura" src="../../Images/Figure/wPawn.png" / alt="Pijun"></td>
+            <td id="b2" class="crnoPolje" data-x="b" data-y="2"><img class="slikaFigura" src="../../Images/Figure/wPawn.png" / alt="Pijun"></td>
+            <td id="c2" class="bijeloPolje" data-x="c" data-y="2"><img class="slikaFigura" src="../../Images/Figure/wPawn.png" / alt="Pijun"></td>
+            <td id="d2" class="crnoPolje" data-x="d" data-y="2"><img class="slikaFigura" src="../../Images/Figure/wPawn.png" / alt="Pijun"></td>
+            <td id="e2" class="bijeloPolje" data-x="e" data-y="2"><img class="slikaFigura" src="../../Images/Figure/wPawn.png" / alt="Pijun"></td>
+            <td id="f2" class="crnoPolje" data-x="f" data-y="2"><img class="slikaFigura" src="../../Images/Figure/wPawn.png" / alt="Pijun"></td>
+            <td id="g2" class="bijeloPolje" data-x="g" data-y="2"><img class="slikaFigura" src="../../Images/Figure/wPawn.png" / alt="Pijun"></td>
+            <td id="h2" class="crnoPolje" data-x="h" data-y="2"><img class="slikaFigura" src="../../Images/Figure/wPawn.png" / alt="Pijun"></td>
+            <td class="znakPoljeVertikalno">2</td>
+        </tr>
+        <tr>
+            <td class="znakPoljeVertikalno">1</td>
+            <td id="a1" class="crnoPolje" data-x="a" data-y="1"><img class="slikaFigura" src="../../Images/Figure/wRook.png" / alt="Top"></td>
+            <td id="b1" class="bijeloPolje" data-x="b" data-y="1"><img class="slikaFigura" src="../../Images/Figure/wKnight.png" / alt="Skakac"></td>
+            <td id="c1" class="crnoPolje" data-x="c" data-y="1"><img class="slikaFigura" src="../../Images/Figure/wBishop.png" / alt="Lovac"></td>
+            <td id="d1" class="bijeloPolje" data-x="d" data-y="1"><img class="slikaFigura" src="../../Images/Figure/wQueen.png" / alt="Dama"></td>
+            <td id="e1" class="crnoPolje" data-x="e" data-y="1"><img class="slikaFigura" src="../../Images/Figure/wKing.png" / alt="Kralj"></td>
+            <td id="f1" class="bijeloPolje" data-x="f" data-y="1"><img class="slikaFigura" src="../../Images/Figure/wBishop.png" / alt="Lovac"></td>
+            <td id="g1" class="crnoPolje" data-x="g" data-y="1"><img class="slikaFigura" src="../../Images/Figure/wKnight.png" / alt="Skakac"></td>
+            <td id="h1" class="bijeloPolje" data-x="h" data-y="1"><img class="slikaFigura" src="../../Images/Figure/wRook.png" / alt="Top"></td>
+            <td class="znakPoljeVertikalno">1</td>
+        </tr>
+        <tr>
+            <td class="kut"></td>
+            <td class="znakPoljeHorizontalno">a</td>
+            <td class="znakPoljeHorizontalno">b</td>
+            <td class="znakPoljeHorizontalno">c</td>
+            <td class="znakPoljeHorizontalno">d</td>
+            <td class="znakPoljeHorizontalno">e</td>
+            <td class="znakPoljeHorizontalno">f</td>
+            <td class="znakPoljeHorizontalno">g</td>
+            <td class="znakPoljeHorizontalno">h</td>
+            <td class="kut"></td>
+        </tr>
+    </table>
+    
+    <p id="komentarPotez"></p>
+</div>

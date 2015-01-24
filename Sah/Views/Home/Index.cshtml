@@ -1,0 +1,45 @@
+﻿@using Sah.Pozicije;
+@{
+    var spremiste= new SpremistePozicija();
+    var zadnjiProblemi=(IEnumerable<Sah.Models.DioIgre>)ViewBag.zadnjiProblemi;
+    var tablica=(IEnumerable<Sah.Models.Osoba>)ViewBag.tablica;
+    ViewBag.Title = "Naslovnica";
+    var i = 1;
+}
+@model IEnumerable<Sah.Models.DioIgre>
+<div id="naslovnicaProblemi">
+    <h3>Zadnji uneseni problemi</h3>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li class="img">
+                <a href="@Url.Action("Details", "Pozicija", new { id = item.idDioIgre })">
+                    <img src= "@Url.Content(spremiste.DohvatiPoziciju(item.idDioIgre, VelicinaPozicije.mala))" alt="@Html.AttributeEncode(item.opis)" />
+                    <br />
+                    <span>@Html.DisplayFor(modelItem => item.naziv)</span>
+                    
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+<div class="float-right">
+    <h3>Tablica najboljih</h3>
+    <table>
+        <tr>
+            <th>Pozicija</th>
+            <th>Igrac</th>
+            <th>Bodovi</th>
+        </tr>
+        @foreach (var item in tablica)
+        {
+            <tr >
+                 <td class="RedNajboljih">@i.</td>
+                 <td class="RedNajboljih">@Html.Raw(item.korisnickoIme.ToString())</td>
+                 <td class="RedNajboljih">@Html.Raw(item.bodovi.ToString())</td>
+            </tr>
+            i++;
+        }
+    </table>
+
+</div>

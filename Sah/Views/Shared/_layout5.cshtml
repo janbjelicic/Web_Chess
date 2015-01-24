@@ -1,0 +1,49 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<title>Sahovski problemi - @ViewBag.Title</title>
+		<link href="http://fonts.googleapis.com/css?family=Ubuntu+Condensed" rel="stylesheet" type="text/css" />
+		<link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/artifice/style.css")" rel="Stylesheet" type="text/css" />
+        @Styles.Render("~/Content/bootstrap.min.css")
+        @Scripts.Render("~/bundles/modernizr")
+	</head>
+	<body>
+		<div id="wrapper">
+            <header>
+			    <div id="header">
+                    <div>
+                        <img alt="logo" id="logo" src="../../Images/slika.jpg" />
+                    </div>
+				    <div id="menu">
+					    <div>
+                            
+                            <section id="login">
+                                @Html.Partial("_LoginPartial")
+                            </section>
+                        </div>
+                        <br class="clearfix" />
+				    </div>
+                    
+			    </div>
+                @Html.Partial("_Bar")
+            </header>
+			<div id="page">
+				<div id="content">
+					@RenderBody()
+				</div>
+				<br class="clearfix" />
+			</div>
+		</div>
+		<div id="footer">
+			<p>&copy; FER @DateTime.Now.Year Jan Bjelicic </p>
+		</div>
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+	</body>
+</html>

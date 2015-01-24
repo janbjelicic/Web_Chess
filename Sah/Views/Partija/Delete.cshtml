@@ -1,0 +1,16 @@
+﻿@model Sah.Models.Partija
+
+@{
+    ViewBag.Title = "Brisanje";
+}
+
+
+<h3>Jeste li sigurni da zelite obrisati?</h3>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" class="btn btn-danger" value="Obrisi" /> |
+        @Html.ActionLink("Natrag na listu pozicija", "Index")
+    </p>
+}

@@ -1,0 +1,68 @@
+﻿@using Sah.Pozicije;
+@{
+    SpremistePozicija spremiste = new SpremistePozicija();
+}
+@model Sah.Models.PrikazKomentara
+
+@{
+    ViewBag.Title = "Details";
+    var idPozicije = Model.dioIgre.idDioIgre.ToString();
+    var prikazKomentara = Model;
+}
+
+
+
+<div id="LijevoPregled">
+    <fieldset>
+        <legend>Pregled</legend>
+
+        <div id="pozicijaDetalji">
+           <img height="1000" width="250" src="@Url.Content(spremiste.DohvatiPoziciju(Model.dioIgre.idDioIgre, VelicinaPozicije.velika))" alt="@Html.AttributeEncode(Model.dioIgre.opis)"/>
+            <h5>
+                 @Html.DisplayFor(model => model.dioIgre.naziv)
+             </h5>
+        </div>
+
+        <h5>Opis pozicije :</h5>
+        <div class="opisPozicija">
+            @Html.DisplayFor(model => model.dioIgre.opis)
+        </div>
+
+       @if(Model.dioIgre.tezina>0)
+       {
+         <h5>Unos rjesenja :</h5>
+        <div id="uspjesnostRjesenja"></div>
+        @Html.TextArea("rjesenje",new {id="rjesenjeBox"})
+        <br />
+        <div id="poteziRjesenja">@Html.Raw(Model.potezi)</div>
+        <div id="komentarRjesenja">@Html.Raw(Model.opis)</div>
+        <input type="submit" id="btnRjesenje" class="btn btn-primary" value="Ocijeni" />
+       }
+
+<div id="komentariDolje">
+        <input type="hidden" id="idDioIgre" value="@idPozicije" />
+
+        <script type="text/javascript"                                     
+        src="@Url.Content("~/scripts/jquery-1.7.1.js")"></script>        
+
+        <script type="text/javascript"                                     
+        src="@Url.Content("~/scripts/RjesavanjeProblem.js")"></script>       
+
+        <script type="text/javascript"                                       
+        src="@Url.Content("~/scripts/AjaxDemo.js")"></script> 
+
+        <h4>Komentari</h4>
+        @*@using (Html.BeginForm("DodajKomentar", "Pozicija", new { id = Model.idDioIgre }))*@
+        @*{*@
+                          
+ 
+            @Html.TextArea("tekst", new { rows = 5, cols = 50, id = "commentBox" })   
+            <br />
+            <input type="submit" id="btnDodajKomentar" class="btn btn-primary"  value="Dodaj Komentar" />
+        @*}*@
+
+        @{Html.RenderPartial("DodajKomentar", prikazKomentara);}
+        
+    </div>
+    </fieldset>
+</div>

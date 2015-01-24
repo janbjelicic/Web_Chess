@@ -1,0 +1,47 @@
+﻿@using Sah.Pozicije;
+
+
+@{
+    SpremistePozicija spremiste = new SpremistePozicija();
+    var Tezina = 0;
+}
+
+@model IEnumerable<Sah.Models.DioIgre>
+
+@{
+    ViewBag.Title = "Problem";
+}
+
+<h2>Problemi</h2>
+
+@using (Html.BeginForm()){
+
+    <div class="editor-label">
+        <h5>Tezina</h5>
+    </div>
+            <div class="editor-field">
+                @Html.RadioButton("Tezina","1") Pocetnik
+                @Html.RadioButton("Tezina","2") Amater
+                @Html.RadioButton("Tezina","3") Kandidat
+                @Html.RadioButton("Tezina","4") Majstor
+                @Html.RadioButton("Tezina","5") Velemajstor
+            </div>
+
+    <p>
+        <input type="submit" class="btn btn-primary"  value="Filtar"/>
+    </p>
+}
+
+
+@foreach (var item in Model)
+{
+        <ul>
+            <li class="img">
+                <a href="@Url.Action("Details", "Pozicija", new { id = item.idDioIgre })">
+                    <img src= "@Url.Content(spremiste.DohvatiPoziciju(item.idDioIgre, VelicinaPozicije.mala))" alt="@Html.AttributeEncode(item.opis)" />
+                    <br />
+                    <span>@Html.DisplayFor(modelItem => item.naziv)</span>
+                </a>
+            </li>
+        </ul>
+}

@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="DioIgres" EntityType="Model.DioIgres" />
+    <EntitySet Name="Komentars" EntityType="Model.Komentars" />
+    <EntitySet Name="Osoba" EntityType="Model.Osoba" />
+    <EntitySet Name="Osobas" EntityType="Model.Osobas" />
+    <EntitySet Name="Partijas" EntityType="Model.Partijas" />
+    <EntitySet Name="PokusajRjesenjes" EntityType="Model.PokusajRjesenjes" />
+    <EntitySet Name="Potezs" EntityType="Model.Potezs" />
+    <EntitySet Name="TipIgres" EntityType="Model.TipIgres" />
+    <EntitySet Name="webpages_Membership" EntityType="Model.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="Model.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="Model.webpages_Roles" />
+    <AssociationSet Name="DioIgre_korisnik" Association="Model.DioIgre_korisnik">
+      <End Role="Osobas" EntitySet="Osobas" />
+      <End Role="DioIgres" EntitySet="DioIgres" />
+    </AssociationSet>
+    <AssociationSet Name="DioIgre_potezi" Association="Model.DioIgre_potezi">
+      <End Role="DioIgres" EntitySet="DioIgres" />
+      <End Role="Potezs" EntitySet="Potezs" />
+    </AssociationSet>
+    <AssociationSet Name="DioIgre_tipIgre" Association="Model.DioIgre_tipIgre">
+      <End Role="TipIgres" EntitySet="TipIgres" />
+      <End Role="DioIgres" EntitySet="DioIgres" />
+    </AssociationSet>
+    <AssociationSet Name="Komentar_komentiranaPozicija" Association="Model.Komentar_komentiranaPozicija">
+      <End Role="DioIgres" EntitySet="DioIgres" />
+      <End Role="Komentars" EntitySet="Komentars" />
+    </AssociationSet>
+    <AssociationSet Name="Partija_dioIgre" Association="Model.Partija_dioIgre">
+      <End Role="DioIgres" EntitySet="DioIgres" />
+      <End Role="Partijas" EntitySet="Partijas" />
+    </AssociationSet>
+    <AssociationSet Name="PokusajRjesenje_dioIgre" Association="Model.PokusajRjesenje_dioIgre">
+      <End Role="DioIgres" EntitySet="DioIgres" />
+      <End Role="PokusajRjesenjes" EntitySet="PokusajRjesenjes" />
+    </AssociationSet>
+    <AssociationSet Name="Komentar_korisnik" Association="Model.Komentar_korisnik">
+      <End Role="Osobas" EntitySet="Osobas" />
+      <End Role="Komentars" EntitySet="Komentars" />
+    </AssociationSet>
+    <AssociationSet Name="Partija_komentari" Association="Model.Partija_komentari">
+      <End Role="Partijas" EntitySet="Partijas" />
+      <End Role="Komentars" EntitySet="Komentars" />
+    </AssociationSet>
+    <AssociationSet Name="Osoba_partije" Association="Model.Osoba_partije">
+      <End Role="Osobas" EntitySet="Osobas" />
+      <End Role="Partijas" EntitySet="Partijas" />
+    </AssociationSet>
+    <AssociationSet Name="Partija_bijeli" Association="Model.Partija_bijeli">
+      <End Role="Osobas" EntitySet="Osobas" />
+      <End Role="Partijas" EntitySet="Partijas" />
+    </AssociationSet>
+    <AssociationSet Name="Partija_crni" Association="Model.Partija_crni">
+      <End Role="Osobas" EntitySet="Osobas" />
+      <End Role="Partijas" EntitySet="Partijas" />
+    </AssociationSet>
+    <AssociationSet Name="PokusajRjesenje_korisnik" Association="Model.PokusajRjesenje_korisnik">
+      <End Role="Osobas" EntitySet="Osobas" />
+      <End Role="PokusajRjesenjes" EntitySet="PokusajRjesenjes" />
+    </AssociationSet>
+    <AssociationSet Name="Partija_potezi" Association="Model.Partija_potezi">
+      <End Role="Partijas" EntitySet="Partijas" />
+      <End Role="Potezs" EntitySet="Potezs" />
+    </AssociationSet>
+    <AssociationSet Name="PokusajRjesenje_trenutniPotez" Association="Model.PokusajRjesenje_trenutniPotez">
+      <End Role="Potezs" EntitySet="Potezs" />
+      <End Role="PokusajRjesenjes" EntitySet="PokusajRjesenjes" />
+    </AssociationSet>
+    <AssociationSet Name="webpages_UsersInRoles" Association="Model.webpages_UsersInRoles">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="Osoba" EntitySet="Osoba" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DioIgres">
+    <Key>
+      <PropertyRef Name="idDioIgre" />
+    </Key>
+    <Property Name="idDioIgre" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Opis" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="datumUnos" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tezina" Type="Int32" Nullable="false" />
+    <Property Name="korisnik_idOsoba" Type="Int32" />
+    <Property Name="tipIgre_idTip" Type="Int32" />
+    <NavigationProperty Name="Osobas" Relationship="Model.DioIgre_korisnik" FromRole="DioIgres" ToRole="Osobas" />
+    <NavigationProperty Name="Potezs" Relationship="Model.DioIgre_potezi" FromRole="DioIgres" ToRole="Potezs" />
+    <NavigationProperty Name="TipIgres" Relationship="Model.DioIgre_tipIgre" FromRole="DioIgres" ToRole="TipIgres" />
+    <NavigationProperty Name="Komentars" Relationship="Model.Komentar_komentiranaPozicija" FromRole="DioIgres" ToRole="Komentars" />
+    <NavigationProperty Name="Partijas" Relationship="Model.Partija_dioIgre" FromRole="DioIgres" ToRole="Partijas" />
+    <NavigationProperty Name="PokusajRjesenjes" Relationship="Model.PokusajRjesenje_dioIgre" FromRole="DioIgres" ToRole="PokusajRjesenjes" />
+  </EntityType>
+  <EntityType Name="Komentars">
+    <Key>
+      <PropertyRef Name="idKomentar" />
+    </Key>
+    <Property Name="idKomentar" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="sadrzaj" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="datUnos" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="korisnik_idOsoba" Type="Int32" />
+    <Property Name="komentiranaPozicija_idDioIgre" Type="Int32" />
+    <Property Name="Partija_idPartija" Type="Int32" />
+    <NavigationProperty Name="DioIgres" Relationship="Model.Komentar_komentiranaPozicija" FromRole="Komentars" ToRole="DioIgres" />
+    <NavigationProperty Name="Osobas" Relationship="Model.Komentar_korisnik" FromRole="Komentars" ToRole="Osobas" />
+    <NavigationProperty Name="Partijas" Relationship="Model.Partija_komentari" FromRole="Komentars" ToRole="Partijas" />
+  </EntityType>
+  <EntityType Name="Osoba">
+    <Key>
+      <PropertyRef Name="idOsoba" />
+    </Key>
+    <Property Name="idOsoba" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="korisnickoIme" Type="String" Nullable="false" MaxLength="56" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="webpages_Roles" Relationship="Model.webpages_UsersInRoles" FromRole="Osoba" ToRole="webpages_Roles" />
+  </EntityType>
+  <EntityType Name="Osobas">
+    <Key>
+      <PropertyRef Name="idOsoba" />
+    </Key>
+    <Property Name="idOsoba" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ime" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="prezime" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="medunarodniRejting" Type="Int32" Nullable="false" />
+    <Property Name="datumRegistracija" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="korisnickoIme" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="brUnesenihPozicija" Type="Int32" Nullable="false" />
+    <Property Name="autoritetKorisnik" Type="Int32" Nullable="false" />
+    <Property Name="bodovi" Type="Int32" Nullable="false" />
+    <Property Name="tipOsoba" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DioIgres" Relationship="Model.DioIgre_korisnik" FromRole="Osobas" ToRole="DioIgres" />
+    <NavigationProperty Name="Komentars" Relationship="Model.Komentar_korisnik" FromRole="Osobas" ToRole="Komentars" />
+    <NavigationProperty Name="Partijas" Relationship="Model.Osoba_partije" FromRole="Osobas" ToRole="Partijas" />
+    <NavigationProperty Name="Partijas1" Relationship="Model.Partija_bijeli" FromRole="Osobas" ToRole="Partijas" />
+    <NavigationProperty Name="Partijas2" Relationship="Model.Partija_crni" FromRole="Osobas" ToRole="Partijas" />
+    <NavigationProperty Name="PokusajRjesenjes" Relationship="Model.PokusajRjesenje_korisnik" FromRole="Osobas" ToRole="PokusajRjesenjes" />
+  </EntityType>
+  <EntityType Name="Partijas">
+    <Key>
+      <PropertyRef Name="idPartija" />
+    </Key>
+    <Property Name="idPartija" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="datumOdigravanja" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="bijeli_idOsoba" Type="Int32" />
+    <Property Name="crni_idOsoba" Type="Int32" />
+    <Property Name="dioIgre_idDioIgre" Type="Int32" />
+    <Property Name="Osoba_idOsoba" Type="Int32" />
+    <NavigationProperty Name="DioIgres" Relationship="Model.Partija_dioIgre" FromRole="Partijas" ToRole="DioIgres" />
+    <NavigationProperty Name="Komentars" Relationship="Model.Partija_komentari" FromRole="Partijas" ToRole="Komentars" />
+    <NavigationProperty Name="Osobas" Relationship="Model.Osoba_partije" FromRole="Partijas" ToRole="Osobas" />
+    <NavigationProperty Name="Osobas1" Relationship="Model.Partija_bijeli" FromRole="Partijas" ToRole="Osobas" />
+    <NavigationProperty Name="Osobas2" Relationship="Model.Partija_crni" FromRole="Partijas" ToRole="Osobas" />
+    <NavigationProperty Name="Potezs" Relationship="Model.Partija_potezi" FromRole="Partijas" ToRole="Potezs" />
+  </EntityType>
+  <EntityType Name="PokusajRjesenjes">
+    <Key>
+      <PropertyRef Name="idPokusaj" />
+    </Key>
+    <Property Name="idPokusaj" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="brojac" Type="Int32" Nullable="false" />
+    <Property Name="dioIgre_idDioIgre" Type="Int32" />
+    <Property Name="korisnik_idOsoba" Type="Int32" />
+    <Property Name="trenutniPotez_idPotez" Type="Int32" />
+    <NavigationProperty Name="DioIgres" Relationship="Model.PokusajRjesenje_dioIgre" FromRole="PokusajRjesenjes" ToRole="DioIgres" />
+    <NavigationProperty Name="Osobas" Relationship="Model.PokusajRjesenje_korisnik" FromRole="PokusajRjesenjes" ToRole="Osobas" />
+    <NavigationProperty Name="Potezs" Relationship="Model.PokusajRjesenje_trenutniPotez" FromRole="PokusajRjesenjes" ToRole="Potezs" />
+  </EntityType>
+  <EntityType Name="Potezs">
+    <Key>
+      <PropertyRef Name="idPotez" />
+    </Key>
+    <Property Name="idPotez" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="potezZapisanNotacijski" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="opis" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DioIgre_idDioIgre" Type="Int32" />
+    <Property Name="Partija_idPartija" Type="Int32" />
+    <NavigationProperty Name="DioIgres" Relationship="Model.DioIgre_potezi" FromRole="Potezs" ToRole="DioIgres" />
+    <NavigationProperty Name="Partijas" Relationship="Model.Partija_potezi" FromRole="Potezs" ToRole="Partijas" />
+    <NavigationProperty Name="PokusajRjesenjes" Relationship="Model.PokusajRjesenje_trenutniPotez" FromRole="Potezs" ToRole="PokusajRjesenjes" />
+  </EntityType>
+  <EntityType Name="TipIgres">
+    <Key>
+      <PropertyRef Name="idTip" />
+    </Key>
+    <Property Name="idTip" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="naziv" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DioIgres" Relationship="Model.DioIgre_tipIgre" FromRole="TipIgres" ToRole="DioIgres" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ConfirmationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="IsConfirmed" Type="Boolean" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Osoba" Relationship="Model.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="Osoba" />
+  </EntityType>
+  <Association Name="DioIgre_korisnik">
+    <End Role="Osobas" Type="Model.Osobas" Multiplicity="0..1" />
+    <End Role="DioIgres" Type="Model.DioIgres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Osobas">
+        <PropertyRef Name="idOsoba" />
+      </Principal>
+      <Dependent Role="DioIgres">
+        <PropertyRef Name="korisnik_idOsoba" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DioIgre_potezi">
+    <End Role="DioIgres" Type="Model.DioIgres" Multiplicity="0..1" />
+    <End Role="Potezs" Type="Model.Potezs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DioIgres">
+        <PropertyRef Name="idDioIgre" />
+      </Principal>
+      <Dependent Role="Potezs">
+        <PropertyRef Name="DioIgre_idDioIgre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DioIgre_tipIgre">
+    <End Role="TipIgres" Type="Model.TipIgres" Multiplicity="0..1" />
+    <End Role="DioIgres" Type="Model.DioIgres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipIgres">
+        <PropertyRef Name="idTip" />
+      </Principal>
+      <Dependent Role="DioIgres">
+        <PropertyRef Name="tipIgre_idTip" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Komentar_komentiranaPozicija">
+    <End Role="DioIgres" Type="Model.DioIgres" Multiplicity="0..1" />
+    <End Role="Komentars" Type="Model.Komentars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DioIgres">
+        <PropertyRef Name="idDioIgre" />
+      </Principal>
+      <Dependent Role="Komentars">
+        <PropertyRef Name="komentiranaPozicija_idDioIgre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Partija_dioIgre">
+    <End Role="DioIgres" Type="Model.DioIgres" Multiplicity="0..1" />
+    <End Role="Partijas" Type="Model.Partijas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DioIgres">
+        <PropertyRef Name="idDioIgre" />
+      </Principal>
+      <Dependent Role="Partijas">
+        <PropertyRef Name="dioIgre_idDioIgre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PokusajRjesenje_dioIgre">
+    <End Role="DioIgres" Type="Model.DioIgres" Multiplicity="0..1" />
+    <End Role="PokusajRjesenjes" Type="Model.PokusajRjesenjes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DioIgres">
+        <PropertyRef Name="idDioIgre" />
+      </Principal>
+      <Dependent Role="PokusajRjesenjes">
+        <PropertyRef Name="dioIgre_idDioIgre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Komentar_korisnik">
+    <End Role="Osobas" Type="Model.Osobas" Multiplicity="0..1" />
+    <End Role="Komentars" Type="Model.Komentars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Osobas">
+        <PropertyRef Name="idOsoba" />
+      </Principal>
+      <Dependent Role="Komentars">
+        <PropertyRef Name="korisnik_idOsoba" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Partija_komentari">
+    <End Role="Partijas" Type="Model.Partijas" Multiplicity="0..1" />
+    <End Role="Komentars" Type="Model.Komentars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partijas">
+        <PropertyRef Name="idPartija" />
+      </Principal>
+      <Dependent Role="Komentars">
+        <PropertyRef Name="Partija_idPartija" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Osoba_partije">
+    <End Role="Osobas" Type="Model.Osobas" Multiplicity="0..1" />
+    <End Role="Partijas" Type="Model.Partijas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Osobas">
+        <PropertyRef Name="idOsoba" />
+      </Principal>
+      <Dependent Role="Partijas">
+        <PropertyRef Name="Osoba_idOsoba" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Partija_bijeli">
+    <End Role="Osobas" Type="Model.Osobas" Multiplicity="0..1" />
+    <End Role="Partijas" Type="Model.Partijas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Osobas">
+        <PropertyRef Name="idOsoba" />
+      </Principal>
+      <Dependent Role="Partijas">
+        <PropertyRef Name="bijeli_idOsoba" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Partija_crni">
+    <End Role="Osobas" Type="Model.Osobas" Multiplicity="0..1" />
+    <End Role="Partijas" Type="Model.Partijas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Osobas">
+        <PropertyRef Name="idOsoba" />
+      </Principal>
+      <Dependent Role="Partijas">
+        <PropertyRef Name="crni_idOsoba" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PokusajRjesenje_korisnik">
+    <End Role="Osobas" Type="Model.Osobas" Multiplicity="0..1" />
+    <End Role="PokusajRjesenjes" Type="Model.PokusajRjesenjes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Osobas">
+        <PropertyRef Name="idOsoba" />
+      </Principal>
+      <Dependent Role="PokusajRjesenjes">
+        <PropertyRef Name="korisnik_idOsoba" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Partija_potezi">
+    <End Role="Partijas" Type="Model.Partijas" Multiplicity="0..1" />
+    <End Role="Potezs" Type="Model.Potezs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partijas">
+        <PropertyRef Name="idPartija" />
+      </Principal>
+      <Dependent Role="Potezs">
+        <PropertyRef Name="Partija_idPartija" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PokusajRjesenje_trenutniPotez">
+    <End Role="Potezs" Type="Model.Potezs" Multiplicity="0..1" />
+    <End Role="PokusajRjesenjes" Type="Model.PokusajRjesenjes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Potezs">
+        <PropertyRef Name="idPotez" />
+      </Principal>
+      <Dependent Role="PokusajRjesenjes">
+        <PropertyRef Name="trenutniPotez_idPotez" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="webpages_UsersInRoles">
+    <End Role="webpages_Roles" Type="Model.webpages_Roles" Multiplicity="*" />
+    <End Role="Osoba" Type="Model.Osoba" Multiplicity="*" />
+  </Association>
+</Schema>

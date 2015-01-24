@@ -1,0 +1,56 @@
+﻿@model Sah.Models.RegisterModel
+@{
+    ViewBag.Title = "Registracija";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+<div class="LijeviRegistracija">
+    <fieldset>
+        <legend>Registracija</legend>
+        <ol>
+            <li>
+                <h5>Korisnicko ime</h5>
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m=>m.UserName)
+            </li>
+            <li>
+                <h5>Lozinka</h5>
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m=>m.Password)
+            </li>
+            <li>
+                <h5>Potvrdi lozinku</h5>
+                @Html.PasswordFor(m => m.ConfirmPassword)
+                @Html.ValidationMessageFor(m=>m.ConfirmPassword)
+            </li>
+            <li>
+                <h5>Ime</h5>
+                @Html.TextBoxFor(m => m.Ime)
+                @Html.ValidationMessageFor(m=>m.Ime)
+            </li>
+            <li>
+                <h5>Prezime</h5>
+                @Html.TextBoxFor(m => m.Prezime)
+                @Html.ValidationMessageFor(m=>m.Prezime)
+            </li>
+        </ol>
+        <input class="btn btn-primary" type="submit" value="Registracija" />
+    </fieldset>
+</div>
+<div class="DesniRegistracija">
+    <p>
+        Registrirajte se na web stranicu "Sahovski problemi" gdje cete</p><p> imati mogucnost
+        rjesavanja problema razlicite tezine i pritom </p><p>se natjecati sa ostalim profesionalnim
+        sahistima te</p><p> amaterima. Uz mogucnosti unosa i rjesavanja razlicitih </p><p>problema nudi
+        se pregled najpopularnijih otvaranja,</p><p>sredisnjica, konacnica te malo sahovske povijesti,</p><p>
+        zanimljivosti i citata poznatih sahista.
+    </p>
+    <img alt="Magnus" class="slikaPrvaka" src="../../Images/magnuscarlsen.jpg" />
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

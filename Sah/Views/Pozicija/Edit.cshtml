@@ -1,0 +1,111 @@
+﻿@model Sah.Models.DioIgreUnos
+@using Sah.Pozicije
+
+@{
+    SpremistePozicija spremiste = new SpremistePozicija();
+    ViewBag.Title = "Uredi";
+    var pozicija = Model;
+}
+
+<div class="LijeviDodaj">
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Uredi poziciju</legend>
+
+        @Html.HiddenFor(model => model.idDioIgre)
+        @Html.HiddenFor(model=>model.Pozicija)
+
+        <div class="editor-label">
+                <h5>Naziv</h5>
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Naziv)
+                @Html.ValidationMessageFor(model => model.Naziv)
+            </div>
+
+            <div class="editor-label">
+                <h5>Opis</h5>
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Opis)
+                @Html.ValidationMessageFor(model => model.Opis)
+            </div>
+
+            <div class="editor-label">
+                <h5>Potezi</h5>
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.poteziSpojeno)
+                @Html.ValidationMessageFor(model => model.poteziSpojeno)
+            </div>
+
+            <div class="editor-label">
+                <h5>Tezina</h5>
+            </div>
+            <div class="editor-field">
+                @Html.RadioButton("Tezina","0") Nije problem
+                @Html.RadioButton("Tezina","1") Pocetnik
+                @Html.RadioButton("Tezina","2") Amater
+                @Html.RadioButton("Tezina","3") Kandidat
+                @Html.RadioButton("Tezina","4") Majstor
+                @Html.RadioButton("Tezina","5") Velemajstor
+                @Html.ValidationMessageFor(model => model.Tezina)
+            </div>
+
+            <div class="editor-label">
+                <h5>Tip igre</h5>
+            </div>
+            <div class="editor-field">
+                @Html.RadioButton("tipIgre","1") Otvaranje
+                @Html.RadioButton("tipIgre","2") Sredisnjica
+                @Html.RadioButton("tipIgre","3") Konacnica
+                @Html.RadioButton("tipIgre","4") Problem
+                @Html.ValidationMessageFor(model => model.tipIgre)
+            </div>
+
+        <h5>Pozicija</h5>
+        <img src= "@Url.Content(spremiste.DohvatiPoziciju(pozicija.idDioIgre, VelicinaPozicije.mala))" alt="@Html.AttributeEncode(pozicija.Opis)" />
+        <br />
+        <p>
+            <input type="submit" class="btn btn-primary"  value="Spremi" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Natrag na naslovnicu", "Index", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+    </div>
+<div class="DesniDodaj">
+    <p>Za sve potrebne informacije o sahovskim problemima mozete se informirati na ovoj 
+        <a href="http://en.wikipedia.org/wiki/Chess_problem">stranici.</a></p>
+    <p>Osnovne stvari na koje treba obratiti pozornost pri unosu sahovskog rjesenja:</p>
+    <ol>
+        <li>
+            Potezi se zapisuju u standardnoj sahovskoj notaciji (engleske kratice za figure).
+        </li>
+        <li>
+            Mogucnost unosa komentara uz dani potez (primjer komentara <br />"/ komentar /").
+        </li>
+        <li>
+            Opisi problema se navode u standardnim kraticama "#"(mat),"="(pat)...
+        </li>
+        <li>
+            U opisu se navodi i broj poteza koji vodi do rjesenja "#3"--> mat u 3 poteza.
+        </li>
+        <li>
+            *-->Oznacava sve legalne poteze bijelog ili crnog.
+        </li>
+        <li>
+            Potezi varijante su odvojeni zarezom. Primjer :<br /> 1. Kf3//,Qa5//,Qa4// <br /> 
+            Unos poteza je obavezan i uz svaki potez mora stajati komentar(prazan ili koji sadrzi neki tekst).
+        </li>
+    </ol>
+</div>

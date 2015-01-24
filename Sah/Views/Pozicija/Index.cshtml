@@ -1,0 +1,56 @@
+﻿@using Sah.Pozicije;
+@{
+    SpremistePozicija spremiste = new SpremistePozicija();
+}
+
+@model IEnumerable<Sah.Models.DioIgre>
+
+@{
+    ViewBag.Title = "Pozicije";
+}
+
+<h2>Pozicije</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="tablicaPozicija">
+    <tr>
+        <th>
+            Pozicija
+        </th>
+        <th>
+            Korisnicko ime
+        </th>
+        <th>
+            Naziv
+        </th>
+        <th>
+           Tezina
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img src= "@Url.Content(spremiste.DohvatiPoziciju(item.idDioIgre, VelicinaPozicije.mala))" alt="@Html.AttributeEncode(item.Opis)" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.korisnik.korisnickoIme)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipIgre.naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tezina)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idDioIgre }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idDioIgre }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idDioIgre })
+        </td>
+    </tr>
+}
+
+</table>

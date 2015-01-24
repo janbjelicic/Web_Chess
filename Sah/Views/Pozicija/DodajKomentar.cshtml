@@ -1,0 +1,9 @@
+﻿@model Sah.Models.PrikazKomentara
+
+<ul class="komentari">
+            
+            @foreach (Sah.Models.ViewKomentar item in Model.komentari)
+            {
+                <li id="komentarUListi">@item.tekst <br />@item.osoba, @item.vrijeme </li>
+            }
+    </ul>

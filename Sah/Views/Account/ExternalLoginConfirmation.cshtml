@@ -1,0 +1,36 @@
+﻿@model Sah.Models.RegisterExternalLoginModel
+@{
+    ViewBag.Title = "Registracija";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Povezite svoj @ViewBag.ProviderDisplayName racun.</h2>
+</hgroup>
+
+@using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Forma povezivanja</legend>
+        <p>
+            Uspjesno ste se autenticirali sa <strong>@ViewBag.ProviderDisplayName</strong>.
+             Molimo vas da unesete korisnicko ime za ovu stranicu 
+            i pritisnete dugme  Prihvati za zavrsetak prijave.
+        </p>
+        <ol>
+            <li class="name">
+                <h5>Korisnicko ime</h5>
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+        </ol>
+        @Html.HiddenFor(m => m.ExternalLoginData)
+        <input type="submit" value="Register" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

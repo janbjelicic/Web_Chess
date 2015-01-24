@@ -1,0 +1,24 @@
+﻿@using Sah.Pozicije;
+@{
+    SpremistePozicija spremiste = new SpremistePozicija();
+}
+
+@model IEnumerable<Sah.Models.DioIgre>
+
+@{
+    ViewBag.Title = "Konacnica";
+}
+
+<h2>Konacnica</h2>
+<ul>
+    @foreach (var item in Model)
+    {
+            <li class="img">
+                <a href="@Url.Action("Details", "Pozicija", new { id = item.idDioIgre })">
+                    <img src= "@Url.Content(spremiste.DohvatiPoziciju(item.idDioIgre, VelicinaPozicije.mala))" alt="@Html.AttributeEncode(item.opis)" />
+                    <br />
+                    <span>@Html.DisplayFor(modelItem => item.naziv)</span>
+                </a>
+            </li>
+    }
+</ul>

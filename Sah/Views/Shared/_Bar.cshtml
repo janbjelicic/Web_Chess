@@ -1,0 +1,39 @@
+﻿@using Sah.Models;
+<div class="container">
+
+    <nav id="userbar">
+
+        <div class="navbar">
+             <div class="navbar-inner">
+
+                <ul class="nav">
+                  <li>@Html.ActionLink("Naslovnica", "Index", "Home")</li>
+
+                @if (Request.IsAuthenticated && WebSecurity.CurrentUserId > 0)
+                {
+                    if (Roles.IsUserInRole(UlogeKorisnika.admin.ToString()))
+                    {
+                        <li>@Html.ActionLink("Partija", "Create", "Partija")</li>
+                    }
+                    
+                     if (Roles.IsUserInRole(UlogeKorisnika.obican.ToString()))
+                        {
+                            <li>@Html.ActionLink("Profil", "Profil", "Home")</li>
+                            <li>@Html.ActionLink("Dodaj", "Create", "Pozicija")</li>
+                        }
+                    }
+                    <li>@Html.ActionLink("Otvaranje", "Otvaranje", "Pozicija")</li>
+                    <li>@Html.ActionLink("Sredisnjica", "Sredisnjica", "Pozicija")</li>
+                    <li>@Html.ActionLink("Konacnica", "Konacnica", "Pozicija")</li>
+                    <li>@Html.ActionLink("Problem", "Problem", "Pozicija")</li>
+                    <li>@Html.ActionLink("Pregled Partija", "Index", "Partija")</li>
+                    <li>@Html.ActionLink("Povijest", "Povijest", "Home")</li>
+                    <li>@Html.ActionLink("Citati", "Citati", "Home")</li>
+                </ul>
+
+             </div>
+       </div>
+
+</nav>
+
+</div>

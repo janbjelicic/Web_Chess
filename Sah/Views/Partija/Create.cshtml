@@ -1,0 +1,96 @@
+﻿@model Sah.Models.PartijaUnos
+
+@{
+    ViewBag.Title = "Dodaj pariju";
+}
+
+<div class="LijeviPartija">
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Partija</legend>
+
+        <div class="Bijeli">
+                <h4>Bijeli :</h4>
+                <h5>Ime </h5>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.imeBijeli)
+                @Html.ValidationMessageFor(model => model.imeBijeli)
+            </div>
+                <h5>Prezime</h5>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.prezimeBijeli)
+                @Html.ValidationMessageFor(model => model.prezimeBijeli)
+            </div>
+                <h5>Rejting</h5>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.medunarodniRejtingBjeli)
+                @Html.ValidationMessageFor(model => model.medunarodniRejtingBjeli)
+            </div>
+        </div>
+
+        <div class="Crni">
+               <h4>Crni :</h4>
+                <h5>Ime </h5>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.imeCrni)
+                @Html.ValidationMessageFor(model => model.imeCrni)
+            </div>
+                <h5>Prezime</h5>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.prezimeCrni)
+                @Html.ValidationMessageFor(model => model.prezimeCrni)
+            </div>
+                <h5>Rejting</h5>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.medunarodniRejtingCrni)
+                @Html.ValidationMessageFor(model => model.medunarodniRejtingCrni)
+            </div>
+        </div>
+
+        <h5>Datum </h5>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.datumOdigravanja)
+            @Html.ValidationMessageFor(model => model.datumOdigravanja)
+        </div>
+
+        
+            <h5>Potezi</h5>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.poteziSpojeni)
+            @Html.ValidationMessageFor(model => model.poteziSpojeni)
+        </div>
+        <br />
+        <br />
+
+        <p>
+            <input type="submit" class="btn btn-primary" value="Dodaj" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Natrag na naslovnicu", "Index", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+</div>
+<div class="DesniPartija">
+    <p>Administrator na ovoj stranici unosi partije poznatih sahista koje
+        ce kasnije korisnici moci pregledavati na sahovskoj ploci uz 
+        mogucnost pracenja poteza. Unos poteza je obavezan i uz svaki
+        potez mora stajati komentar(prazan ili koji sadrzi neki tekst).
+    </p>
+    <p>Primjer unosa poteza za partiju: <br />
+        e2-e4//,e7-e5//,f1-c4//,b8-c6//,d1-h5//,g8-f6//,h5-f7/mat/
+    </p>
+    <p>Pri unosu partija drzimo se standardne sahovske notacije
+        gdje se navodi polje na kojem se figura trenutno nalazi te
+        polje na koje se figurom zeli otici.
+    </p>
+</div>

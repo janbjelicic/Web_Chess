@@ -1,0 +1,40 @@
+﻿@model Sah.Models.LoginModel
+
+@{
+    ViewBag.Title = "Prijava";
+}
+
+<section id="loginForm">
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Prijava</legend>
+        <ul>
+            <li>
+                <h5>Korisnicko ime</h5>
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li>
+                <h5>Lozinka</h5>
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li>
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+            </li>
+        </ul>
+        <input class="btn btn-primary" type="submit" value="Prijava" />
+    </fieldset>
+    <p>
+        @Html.ActionLink("Registriraj se", "Register") ako nemas racun.
+    </p>
+}
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

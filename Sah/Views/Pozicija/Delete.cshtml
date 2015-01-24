@@ -1,0 +1,15 @@
+﻿@model Sah.Models.DioIgre
+
+@{
+    ViewBag.Title = "Obrisi";
+}
+
+
+<h3>Jeste li sigurni da zelite obrisati ovu poziciju?</h3>
+
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" class="btn btn-danger" value="Obrisi" /> |
+        @Html.ActionLink("Natrag", "Profil","Home")
+    </p>
+}

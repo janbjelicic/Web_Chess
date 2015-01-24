@@ -1,0 +1,69 @@
+﻿@model Sah.Models.Osoba
+@using Sah.Pozicije
+
+@{
+    SpremistePozicija spremiste = new SpremistePozicija();
+    ViewBag.Title = "Profil";
+    var korisnik = Model;
+}
+
+<div id="LijeviProfil">
+
+    <fieldset>
+        <legend>Profil</legend>
+
+        <div class="display-label">
+             <h5>Ime</h5>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.ime)
+        </div>
+
+        <div class="display-label">
+             <h5>Prezime</h5>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.prezime)
+        </div>
+
+        <div class="display-label">
+             <h5>Bodovi</h5>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.bodovi)
+        </div>
+        <div class="display-label">
+             <h5>Korisnicko ime</h5>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.korisnickoIme)
+        </div>
+        @if (korisnik.medunarodniRejting > 0)
+        {
+            <div class="display-label">
+                <h5>Medunarodni rejting</h5>
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.medunarodniRejting)
+            </div>
+        }
+    
+    </fieldset>
+</div>
+<div id="DesniProfil">
+    @foreach (var item in korisnik.pozicije)
+    {
+        <ul>
+            <li class="img">
+                <a href="@Url.Action("Details", "Pozicija", new { id = item.idDioIgre })">
+                    <img src= "@Url.Content(spremiste.DohvatiPoziciju(item.idDioIgre, VelicinaPozicije.mala))" alt="@Html.AttributeEncode(item.opis)" />
+                    <br />
+                    <span>@Html.DisplayFor(modelItem => item.naziv)</span>
+                </a>
+                <br />
+                <a href="@Url.Action("Edit","Pozicija",new {id=item.idDioIgre})">Uredi</a> |
+                <a href="@Url.Action("Delete","Pozicija",new {id=item.idDioIgre})">Obrisi</a>
+            </li>
+        </ul>
+    }
+</div>

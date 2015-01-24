@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Sah.Models.Partija>
+@using Sah.Models;
+
+@{
+    ViewBag.Title = "Lista partija";
+}
+
+<h3>Lista partija</h3>
+
+<table>
+    <tr>
+        <th class="listaPartija">
+            Datum 
+        </th>
+        <th class="listaPartija">
+           Bijeli
+        </th>
+        <th class="listaPartija">
+            
+        </th>
+        <th class="listaPartija">
+           Crni
+        </th>
+        <th class="listaPartija">
+           
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="listaPartija">
+            @Html.DisplayFor(modelItem => item.datumOdigravanja)
+        </td>
+        <td class="listaPartija">
+            @Html.DisplayFor(modelItem => item.bijeli.ime)
+        </td>
+        <td class="listaPartija">
+            @Html.DisplayFor(modelItem => item.bijeli.prezime)
+        </td>
+        <td class="listaPartija">
+            @Html.DisplayFor(modelItem => item.crni.ime)
+        </td >
+        <td class="listaPartija">
+            @Html.DisplayFor(modelItem => item.crni.prezime)
+        </td>
+        <td class="listaPartija">
+            @if (Request.IsAuthenticated && WebSecurity.CurrentUserId > 0)
+                {
+                    if (Roles.IsUserInRole(UlogeKorisnika.admin.ToString()))
+                    {
+                        @Html.ActionLink("Uredi", "Edit", new { id=item.idPartija }) <b>&nbsp;</b>
+                        @Html.ActionLink("Obrisi", "Delete", new { id=item.idPartija }) <b>&nbsp;</b>
+                }
+            }
+            @Html.ActionLink("Pregled", "Details", new { id=item.idPartija }) 
+        </td>
+    </tr>
+}
+
+</table>
